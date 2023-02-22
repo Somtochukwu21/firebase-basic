@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Firebase 9</title>
+    <link rel="stylesheet" href="../dist/output.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="font-Kumbh">
+    <div class="max-w-[1000px] m-auto text-center pt-8">
+      <form
+        class="add rounded shadow bg-[#44C2E5] h-[450px] flex justify-center items-center"
+      >
+        <div class="bg-white py-8 w-[50%] shadow rounded flex gap-4 flex-col">
+          <h3 class="text-xl text-[#44C2E5] capitalize">add a new book</h3>
+          <div class="relative">
+            <label for="title" class="absolute top-2 pl-1 text-gray-400"
+              >Title:</label
+            >
+            <input
+              class="border py-2 pl-11 text-gray-400 w-[60%] outline-[#44c2e5]"
+              type="text"
+              id="title"
+              name="title"
+              required
+            />
+          </div>
+
+          <div class="relative">
+            <label for="author" class="absolute top-2 pl-1 text-gray-400"
+              >Author:</label
+            >
+            <input
+              type="text"
+              class="border text-gray-400 pl-[4rem] py-2 w-[60%] outline-[#44c2e5]"
+              id="author"
+              name="author"
+              required
+            />
+          </div>
+
+          <input
+            type="submit"
+            class="bg-[#44c2e5] w-[60%] m-auto text-white p-2 rounded capitalize"
+            value="add "
+          />
+        </div>
+      </form>
+
+      <form
+        class="delete my-8 bg-[#F501F7] rounded shadow h-[450px] flex justify-center items-center"
+      >
+        <div class="bg-white py-8 w-[50%] shadow rounded flex gap-4 flex-col">
+          <h3 class="text-xl text-[#f501f7] capitalize">Delete book</h3>
+          <div class="relative">
+            <label for="id" class="absolute top-2 pl-1 text-gray-400"
+              >Document id:</label
+            >
+            <input
+              type="text"
+              name="id"
+              id="id"
+              class="border pl-[6.6rem] py-2 w-[60%] outline-[#f501f7] text-gray-400"
+              required="required"
+            />
+          </div>
+
+          <input
+            class="bg-[#F501F7] w-[60%] m-auto text-white p-2 rounded capitalize"
+            type="submit"
+            value="delete a book"
+          />
+        </div>
+      </form>
+
+
+      <script src="bundle.js"></script>
+    </div>
+  </body>
+</html>

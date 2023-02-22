@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    body {
+        /* background: linear-gradient(red, yellow, green); */
+        background: linear-gradient(-90deg, #0FC9DA, #7A6AE9, #F501F7) no-repeat;
+        background-size: cover;
+        /* height: 100vh; */
+        
+    }
+}
