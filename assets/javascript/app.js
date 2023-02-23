@@ -7,7 +7,10 @@ import {
   doc,
   onSnapshot,
   query,
-  where,
+  // where,
+  getDoc,
+  orderBy,
+  serverTimestamp,
 } from "firebase/firestore";
 
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -25,11 +28,12 @@ initializeApp(firebaseConfig);
 
 // init services
 const db = getFirestore();
+
 // collection ref
 const colRef = collection(db, "books");
+
 // queries
-const q = query(colRef, where("author", "!=", "William Shakespeare"));
- 
+const q = query(colRef, orderBy("createdAt"));
 
 onSnapshot(q, (snapshot) => {
   let books = [];
@@ -51,6 +55,7 @@ window.onload = () => {
     addDoc(colRef, {
       title: addBook.title.value,
       author: addBook.author.value,
+      createdAt: serverTimestamp(),
     }).then(addBook.reset());
   });
 
@@ -71,3 +76,12 @@ function getHTML() {
     deleteBook,
   };
 }
+
+// getting a single document
+const docRef = doc(db, "books", "5A7f5pM6zGV52DpkNVor");
+
+
+
+onSnapshot(docRef, (docs) => {
+  console.log(docs.data(), docs.id);
+});
