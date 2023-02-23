@@ -1,4 +1,6 @@
 import { initializeApp } from "firebase/app";
+import { firebaseConfig } from "./baseConfig";
+import { getHTML } from "./htmlDocs";
 import {
   getFirestore,
   collection,
@@ -8,31 +10,17 @@ import {
   onSnapshot,
   query,
   // where,
-  getDoc,
+  // getDoc,
   orderBy,
   serverTimestamp,
+  updateDoc,
 } from "firebase/firestore";
-
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyD82oVlyD5HTlJHMft981FMgzF_h9SKUh0",
-  authDomain: "firebasic-13e07.firebaseapp.com",
-  projectId: "firebasic-13e07",
-  storageBucket: "firebasic-13e07.appspot.com",
-  messagingSenderId: "575005889399",
-  appId: "1:575005889399:web:e856b83d661fbf5e308772",
-  measurementId: "G-HV7GJ69MW2",
-};
 
 initializeApp(firebaseConfig);
 
 // init services
 const db = getFirestore();
-
-// collection ref
 const colRef = collection(db, "books");
-
-// queries
 const q = query(colRef, orderBy("createdAt"));
 
 onSnapshot(q, (snapshot) => {
@@ -45,9 +33,16 @@ onSnapshot(q, (snapshot) => {
   console.table(books);
 });
 
+// getting a single document
+const docRef = doc(db, "books", "5A7f5pM6zGV52DpkNVor");
+
+onSnapshot(docRef, (docs) => {
+  console.log(docs.data(), docs.id);
+});
+
 // the window outputs
 window.onload = () => {
-  const { addBook, deleteBook } = getHTML();
+  const { addBook, deleteBook, updateBook } = getHTML();
 
   addBook.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -64,24 +59,10 @@ window.onload = () => {
 
     deleteDoc(doc(colRef, deleteBook.id.value)).then(deleteBook.reset());
   });
+
+  updateBook.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    console.log("why");
+  });
 };
-
-// get HTML documents
-function getHTML() {
-  const addBook = document.querySelector(".add");
-  const deleteBook = document.querySelector(".delete");
-
-  return {
-    addBook,
-    deleteBook,
-  };
-}
-
-// getting a single document
-const docRef = doc(db, "books", "5A7f5pM6zGV52DpkNVor");
-
-
-
-onSnapshot(docRef, (docs) => {
-  console.log(docs.data(), docs.id);
-});
